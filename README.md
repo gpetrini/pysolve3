@@ -1,4 +1,5 @@
 # pysolve - Solving systems of equations
+Python3 compatibility from {https://github.com/kennt/pylinsolve}(pylinsolve)
 The purpose of this tool is to aid in expressing and solving
 sets of equations using Python.
 
