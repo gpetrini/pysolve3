@@ -18,10 +18,10 @@ from sympy.parsing.sympy_parser import parse_expr
 from sympy.parsing.sympy_parser import factorial_notation, auto_number
 from sympy.utilities import lambdify
 
-from pysolve.equation import Equation, EquationError, _rewrite
-from pysolve.parameter import Parameter, SeriesParameter
-from pysolve.utils import is_aclose
-from pysolve.variable import Variable
+from pysolve3.equation import Equation, EquationError, _rewrite
+from pysolve3.parameter import Parameter, SeriesParameter
+from pysolve3.utils import is_aclose
+from pysolve3.variable import Variable
 
 
 class DuplicateNameError(ValueError):
