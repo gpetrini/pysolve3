@@ -1,8 +1,8 @@
 """ SIMEX model """
 # pylint: disable=invalid-name
 
-from pysolve.model import Model
-from pysolve.utils import is_close, round_solution
+from pysolve3.model import Model
+from pysolve3.utils import is_close, round_solution
 
 
 def create_simex_model():
