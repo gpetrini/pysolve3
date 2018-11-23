@@ -9,8 +9,8 @@ from sympy import Symbol
 from builtins import range
 
 
-from pysolve import InvalidNameError
-from pysolve.variable import Variable
+from pysolve3 import InvalidNameError
+from pysolve3.variable import Variable
 
 
 class Parameter(Symbol):
