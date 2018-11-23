@@ -9,10 +9,10 @@ import unittest
 
 import numpy
 
-from pysolve.equation import EquationError
-from pysolve.model import Model, DuplicateNameError, SolutionNotFoundError
-from pysolve.model import CalculationError
-from pysolve.utils import round_solution, is_close
+from pysolve3.equation import EquationError
+from pysolve3.model import Model, DuplicateNameError, SolutionNotFoundError
+from pysolve3.model import CalculationError
+from pysolve3.utils import round_solution, is_close
 
 
 class TestModel(unittest.TestCase):
