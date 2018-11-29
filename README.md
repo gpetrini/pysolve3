@@ -1,5 +1,7 @@
-# pysolve - Solving systems of equations
-Python3 compatibility from {https://github.com/kennt/pylinsolve}(pylinsolve)
+# psolve3 - Solving systems of equations
+Python3 compatibility from [https://github.com/kennt/pylinsolve](pylinsolve)
+
+
 The purpose of this tool is to aid in expressing and solving
 sets of equations using Python.
 
@@ -21,7 +23,7 @@ models based on Stock Flow Consistent (SFC) models.
 ### Installation
 
 ```python
-pip install pysolve
+pip install pysolve3
 ```
 
 ### Usage
