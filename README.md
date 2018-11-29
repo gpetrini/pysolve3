@@ -84,7 +84,7 @@ for _ in xrange(100):
     if is_close(prev_soln, soln, atol=1e-3):
         break
 
-print round_solution(model.solutions[-1], decimals=1)
+print(round_solution(model.solutions[-1], decimals=1))
 
 ```
 
