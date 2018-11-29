@@ -1,5 +1,5 @@
 # psolve3 - Solving systems of equations
-Python3 compatibility from [https://github.com/kennt/pylinsolve](pylinsolve)
+Python3 compatibility from [pylinsolve](https://github.com/kennt/pylinsolve)
 
 
 The purpose of this tool is to aid in expressing and solving
