@@ -12,4 +12,4 @@ Prof. Gennaro Zezza (http://gennaro.zezza.it/software/eviews/gl2006.php)
 The models are specified and solved using the pysolve package.
 
 To see all the notebooks, visit
-	https://github.com/gpetrini/pysolve3/tree/master/godley_&_lavoie
+	http://nbviewer.jupyter.org/github/gpetrini/pysolve3/tree/master/godley_%26_lavoie/
