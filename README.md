@@ -89,8 +89,7 @@ print(round_solution(model.solutions[-1], decimals=1))
 
 ### Tutorial
 
-A short tutorial with more explanation is available at
-​	http://nbviewer.ipython.org/github/kennt/monetary-economics/blob/master/extra/pysolve%20tutorial.ipynb
+A short tutorial with more explanation is available [here](https://github.com/gpetrini/pysolve3/blob/master/godley_%26_lavoie/extra/pysolve%20tutorial.ipynb)
 
 ### More complex examples
 
