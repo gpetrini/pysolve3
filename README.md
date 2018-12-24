@@ -1,4 +1,6 @@
 # pysolve - Solving systems of equations
+Python3 update from [pylinsolve](https://github.com/gpetrini/pylinsolve). All credits and special thanks to [Kenn Takara](https://github.com/kennt). Follow the updated version of the [Readme file](https://github.com/kennt/monetary-economics).
+
 The purpose of this tool is to aid in expressing and solving
 sets of equations using Python.
 
@@ -20,7 +22,7 @@ models based on Stock Flow Consistent (SFC) models.
 ### Installation
 
 ```python
-pip install pysolve
+pip install pysolve3
 ```
 
 ### Usage
@@ -33,8 +35,8 @@ pip install pysolve
 This example is taken Chapter 3 of the book "Monetary Economics 2e" by
 Lavoie and Godley, 2012.
 ```python
-from pysolve.model import Model
-from pysolve.utils import round_solution, is_close
+from pysolve3.model import Model
+from pysolve3.utils import round_solution, is_close
 
 model = Model()
 
@@ -73,7 +75,7 @@ model.add('Y = Cs + Gs')
 model.add('Nd = Y/W')
 
 # solve until convergence
-for _ in xrange(100):
+for _ in range(100):
     model.solve(iterations=100, threshold=1e-4)
 
     prev_soln = model.solutions[-2]
@@ -81,19 +83,17 @@ for _ in xrange(100):
     if is_close(prev_soln, soln, atol=1e-3):
         break
 
-print round_solution(model.solutions[-1], decimals=1)
+print(round_solution(model.solutions[-1], decimals=1))
 
 ```
 
 ### Tutorial
 
-A short tutorial with more explanation is available at
-	http://nbviewer.ipython.org/github/kennt/monetary-economics/blob/master/extra/pysolve%20tutorial.ipynb
+A short tutorial with more explanation is available [here](https://github.com/gpetrini/pysolve3/blob/master/godley_%26_lavoie/extra/pysolve%20tutorial.ipynb)
 
 ### More complex examples
 
-For additional examples, view the iPython notebooks at
-	http://nbviewer.ipython.org/github/kennt/monetary-economics/tree/master/
+For additional examples, view the iPython notebooks [here](http://nbviewer.jupyter.org/github/gpetrini/pysolve3/tree/master/godley_%26_lavoie/)
 
 ### To do list
 ##### Data import features
@@ -102,17 +102,29 @@ For additional examples, view the iPython notebooks at
 
 ### Changelog
 
+#### Python3 Version
+
+##### 0.1.0
+
+- Init commit
+
+#### Python2 Version
+
 ##### 0.2.0 (in progress)
+
 * Improved documentation
 
 ##### 0.1.7
+
 * Tutorial
 
 ##### 0.1.6
+
 * Added support for solving with Broyden's method
 * Optimized the code for Broyden and Newton-Raphson, should be much faster now.
 
 ##### 0.1.5
+
 * Added the d() function.  Implements the difference between the current value
 and the value from a previous iteration.  d(x) is equivalent to x - x(-1)
 * Added support for the following sympy functions: abs, Min, Max, sign, sqrt
@@ -120,12 +132,14 @@ and the value from a previous iteration.  d(x) is equivalent to x - x(-1)
 * Added support for solving via Newton-Raphson
 
 ##### 0.1.4
+
 * Improved error reporting when unable to solve an equation (due to variable
 missing a value).
 * Also, evaluate() used to require that all variables have a value, but that
 may not be true on initialization, so this requirement has been removed.
 
 ##### 0.1.3 (and before)
+
 * Added support for the exp() and log() functions.
 * Fixed a bug where the usage of '>=' within an if_true() would cause an error.
 
