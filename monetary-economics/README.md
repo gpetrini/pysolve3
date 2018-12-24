@@ -3,19 +3,11 @@ monetary-economics
 
 The models are from the book "Monetary Economics 2e" by Godley and Lavoie, 2012
 
-<<<<<<< HEAD
-=======
-To install pysolve3, run
-
-	pip install pysolve3 --user
-
->>>>>>> d65c932ea8921bbef93031262ddd6734b5d9d625
 This implementation of the models is based on the implementation developed by
 Prof. Gennaro Zezza (http://gennaro.zezza.it/software/eviews/gl2006.php)
 The models are specified and solved using the pysolve package.
 
 To see all the notebooks, visit
-<<<<<<< HEAD
 	http://nbviewer.ipython.org/github/kennt/monetary-economics/tree/master/
 
 Also here is an example of an interactive graph
@@ -65,6 +57,3 @@ Individual files can be viewed at (using the nbviewer web site):
 [Chapter 12 Model OPENFIXG](http://nbviewer.ipython.org/github/kennt/monetary-economics/blob/master/Chapter%2012%20Model%20OPENFIXG.ipynb)
 
 [Chapter 12 Model OPENFLEX](http://nbviewer.ipython.org/github/kennt/monetary-economics/blob/master/Chapter%2012%20Model%20OPENFLEX.ipynb)
-=======
-	http://nbviewer.jupyter.org/github/gpetrini/pysolve3/tree/master/godley_%26_lavoie/
->>>>>>> d65c932ea8921bbef93031262ddd6734b5d9d625

@@ -9,12 +9,21 @@ def read(fname):
 
 setup(
     name='pysolve3',
+<<<<<<< HEAD
     version='0.1.1.2',
     packages=find_packages(),
     install_requires=['sympy==1.1', 'numpy'],
     license='MIT',
     author='Gabriel Petrini da Silveira',
     author_email='gpetrinidasilveira@gmail.com',
+=======
+    version='0.1.1',
+    packages=find_packages(),
+    install_requires=['sympy==1.1', 'numpy'],
+    license='MIT',
+    author=['Kenn Takara', 'Gabriel Petrini da Silveira'],
+    author_email=['kenn.takara@outlook.com', 'gpetrinidasilveira@gmail.com'],
+>>>>>>> d65c932ea8921bbef93031262ddd6734b5d9d625
     classifiers={
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
