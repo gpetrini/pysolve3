@@ -1,13 +1,13 @@
 Metadata-Version: 1.1
-Name: pysolve
-Version: 0.1.7
+Name: pysolve3
+Version: 0.1.1.2
 Summary: A simple interface for solving systems of linear equations
-Home-page: https://github.com/kennt/pylinsolve
-Author: Kenn Takara
-Author-email: kenn.takara@outlook.com
+Home-page: https://github.com/gpetrini/pysolve3
+Author: Gabriel Petrini da Silveira
+Author-email: gpetrinidasilveira@gmail.com
 License: MIT
 Description: ==========
-        pysolve
+        pysolve3
         ==========
         Solving systems of linear equations
         -----------------------------------
@@ -32,7 +32,7 @@ Description: ==========
         Installation
         --------------
         ::
-        	pip install pysolve
+        	pip3 install pysolve
         
         
         Usage
@@ -87,16 +87,8 @@ Description: ==========
         	    if is_close(prev_soln, soln, rtol=1e-3):
         	        break
         
-        	print round_solution(model.solutions[-1], decimals=1)
+        	print(round_solution(model.solutions[-1], decimals=1))
         
-        For additional examples, view the iPython notebooks at
-        	http://nbviewer.ipython.org/github/kennt/monetary-economics/tree/master/
-        
-        
-        Tutorial
-        --------
-        A short tutorial with more explanation is available at
-        	http://nbviewer.ipython.org/github/kennt/monetary-economics/blob/master/extra/pysolve%20tutorial.ipynb
         
         TODO list
         ---------
@@ -142,10 +134,10 @@ Description: ==========
         - Fixed a bug where the usage of '>=' within an if_true() would cause an error.
         
 Platform: UNKNOWN
-Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
 Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
-Classifier: License :: OSI Approved :: MIT License
-Classifier: Programming Language :: Python :: 2.7
-Classifier: Programming Language :: Python
