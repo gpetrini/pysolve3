@@ -1,2 +1,2 @@
-numpy
 sympy==1.1
+numpy
