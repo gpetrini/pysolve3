@@ -47,17 +47,3 @@ class Variable(Symbol):
         self.value = default
 
         self._index = None
-
-#########################################################
-# Monkeypatch the printer until this is merged upstream #
-#https://github.com/tBuLi/symfit/commit/0a76b3839625a47f897a7e84bf5d077d4a9b8f09
-#########################################################
-
-     def _numpycode(self, printer):
-        return printer.doprint(self.name)
-
-    _lambdacode = _numpycode
-    _sympystr = _numpycode
-
-    def _print_Variable(self, expr):
-        return self._print(expr.name) 
