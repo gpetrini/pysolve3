@@ -1,4 +1,4 @@
-""" Contains the Variable class.
+""" Contains the ModVariable class.
 
     Copyright (c) 2014 Kenn Takara
     See LICENSE for details
@@ -10,7 +10,7 @@ from sympy import Symbol
 from pysolve import InvalidNameError
 
 
-class Variable(Symbol):
+class ModVariable(Symbol):
     """ This class contains a 'variable'.  This is a value that
         is being solved here, thus it can change during solving.
         (This is the opposite of a parameter, which is not changed
@@ -33,10 +33,10 @@ class Variable(Symbol):
     ILLEGAL_NAMES = ['I', 'oo', 'nan', 'pi', 'E']
 
     def __init__(self, name, desc=None, default=None):
-        if name in Variable.ILLEGAL_NAMES:
+        if name in ModVariable.ILLEGAL_NAMES:
             raise InvalidNameError(name, 'Name already used by sympy')
 
-        super(Variable, self).__init__()
+        super(ModVariable, self).__init__()
 
         self.name = name
         self.desc = desc

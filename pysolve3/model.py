@@ -21,7 +21,7 @@ from sympy.utilities import lambdify
 from pysolve.equation import Equation, EquationError, _rewrite
 from pysolve.parameter import Parameter, SeriesParameter
 from pysolve.utils import is_aclose
-from pysolve.variable import Variable
+from pysolve.variable import ModVariab
 
 
 class DuplicateNameError(ValueError):
@@ -88,7 +88,7 @@ class _SeriesAccessor(Function):
     @classmethod
     def eval(cls, *arg):
         """ Called from sympy to evaluate the function """
-        if (not isinstance(arg[0], Variable) and
+        if (not isinstance(arg[0], ModVariab) and
                 not isinstance(arg[0], Parameter)):
             raise EquationError('not-a-variable',
                                 str(arg[0]),
@@ -97,7 +97,7 @@ class _SeriesAccessor(Function):
         if arg[0].model is None:
             raise EquationError('no-model',
                                 arg[0].name,
-                                'Variable must belong to a model')
+                                'ModVariab must belong to a model')
         return arg[0].model.get_at(arg[0], arg[1])
 
 
@@ -114,7 +114,7 @@ class _deltaFunction(Function):
     @classmethod
     def eval(cls, *arg):
         """ Called from sympy to evaluate the function """
-        if (not isinstance(arg[0], Variable) and
+        if (not isinstance(arg[0], ModVariab) and
                 not isinstance(arg[0], Parameter)):
             raise EquationError('d-arg-not-a-variable',
                                 str(arg[0]),
@@ -489,7 +489,7 @@ class Model(object):
             default = self._var_default
         if name in self.variables or name in self.parameters:
             raise DuplicateNameError('Name already in use: ' + name)
-        var = Variable(name, desc=desc, default=default)
+        var = ModVariab(name, desc=desc, default=default)
         self.variables[name] = var
         var.model = self
 

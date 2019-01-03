@@ -10,7 +10,7 @@ from builtins import range
 
 
 from pysolve import InvalidNameError
-from pysolve.variable import Variable
+from pysolve.variable import ModVariab
 
 
 class Parameter(Symbol):
@@ -28,7 +28,7 @@ class Parameter(Symbol):
     # pylint: disable=too-many-ancestors
 
     def __init__(self, name, desc=None, default=None):
-        if name in Variable.ILLEGAL_NAMES:
+        if name in ModVariab.ILLEGAL_NAMES:
             raise InvalidNameError(name, 'Name already used by sympy')
 
         super().__init__()
