@@ -28,7 +28,6 @@ class Variable(Symbol):
             equation: This is the equation used to evaluate the
                 variable.
     """
-
     # pylint: disable=too-many-ancestors
 
     ILLEGAL_NAMES = ['I', 'oo', 'nan', 'pi', 'E']
