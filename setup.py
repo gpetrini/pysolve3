@@ -15,7 +15,7 @@ setup(
     license='MIT',
     author='Gabriel Petrini da Silveira',
     author_email='gpetrinidasilveira@gmail.com',
-    classifiers={
+	    classifiers={
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
