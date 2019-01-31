@@ -7,7 +7,7 @@
 
 from sympy import Symbol
 
-from pysolve import InvalidNameError
+from pysolve3 import InvalidNameError
 
 
 class ModVariable(Symbol):

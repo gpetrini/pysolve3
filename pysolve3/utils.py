@@ -80,3 +80,79 @@ def generate_html_table(header, adata):
         shtml += _add_row("td", row)
     shtml += "</table>"
     return shtml
+
+def SFCTable(model):
+    """
+    Create a pandas DateFrame for the model.
+    model = model class object already simulated
+    """
+    import pandas as pd
+    time = len(model.solutions)
+    data_dict = {
+    i: model.solutions[i] for i in range(time)
+                }
+    df = pd.DataFrame(data_dict).transpose()
+    return df
+
+def AddGrowth(df, variables):
+    """
+    Add Growth rate in the table
+    df: A dataframe generated using SFCTable
+    variables: a list of variables to calculate growth rate
+    """
+    import pandas as pd
+    import numpy as np
+    time = df.shape[0]
+    
+    for variable in variables:
+        variable = str(variable)
+        gvariable = 'g' + variable
+        df[gvariable] = [np.nan, np.nan] + [(df[variable][i] - df[variable][i-1])/df[variable][i-1] for i in range(2,time)]
+
+def SolveSFC(model, time=500, iterations=100, threshold=1e-5, table=True):
+    """
+    Solves the model
+    model: a Model class object
+    time: time range to simulate
+    iterations: the number of iterations
+    threshold: threshold
+    table: if True, returns a DataFrame using SFCTable. If so, it must be assigned to a variable
+    """
+
+    for i in range(time):
+        model.solve(iterations=iterations, threshold=1e-5)
+        
+    if table == True:
+        df = SFCTable(model)
+        return df
+    else:
+        pass
+
+def ShockModel(base_model, create_function, variable, value, time=500, table=True):
+    """
+    Shocks the model.
+    base_model: The base scenario model
+    create_function: the function used to create the model class
+    variable: the variable to shock.
+    value: the value to be reassigned to the variable
+    time: the time to simulate using SolveSFC().
+    """
+    variable = str(variable)
+    value = float(value)
+    model = create_function
+    
+    lagged = [key for key in base_model.solutions[-1].keys()]
+    lagged = [i for i in lagged if "__1" in i]
+    for i in lagged:
+        del base_model.solutions[-1][i]
+    
+    model.set_values(base_model.solutions[-1])
+    
+    SolveSFC(model, time=50, table=False)
+    model.set_values({variable:value})
+    
+    df = SolveSFC(model, time=time, table=table)
+    return df
+    
+    
+
