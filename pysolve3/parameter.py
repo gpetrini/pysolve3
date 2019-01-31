@@ -28,7 +28,7 @@ class Parameter(Symbol):
     # pylint: disable=too-many-ancestors
 
     def __init__(self, name, desc=None, default=None):
-        if name in ModVariab.ILLEGAL_NAMES:
+        if name in ModVariable.ILLEGAL_NAMES:
             raise InvalidNameError(name, 'Name already used by sympy')
 
         super().__init__()

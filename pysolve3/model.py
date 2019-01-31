@@ -88,7 +88,7 @@ class _SeriesAccessor(Function):
     @classmethod
     def eval(cls, *arg):
         """ Called from sympy to evaluate the function """
-        if (not isinstance(arg[0], ModVariab) and
+        if (not isinstance(arg[0], ModVariable) and
                 not isinstance(arg[0], Parameter)):
             raise EquationError('not-a-variable',
                                 str(arg[0]),
@@ -97,7 +97,7 @@ class _SeriesAccessor(Function):
         if arg[0].model is None:
             raise EquationError('no-model',
                                 arg[0].name,
-                                'ModVariab must belong to a model')
+                                'ModVariable must belong to a model')
         return arg[0].model.get_at(arg[0], arg[1])
 
 
@@ -114,7 +114,7 @@ class _deltaFunction(Function):
     @classmethod
     def eval(cls, *arg):
         """ Called from sympy to evaluate the function """
-        if (not isinstance(arg[0], ModVariab) and
+        if (not isinstance(arg[0], ModVariable) and
                 not isinstance(arg[0], Parameter)):
             raise EquationError('d-arg-not-a-variable',
                                 str(arg[0]),
@@ -489,7 +489,7 @@ class Model(object):
             default = self._var_default
         if name in self.variables or name in self.parameters:
             raise DuplicateNameError('Name already in use: ' + name)
-        var = ModVariab(name, desc=desc, default=default)
+        var = ModVariable(name, desc=desc, default=default)
         self.variables[name] = var
         var.model = self
 
