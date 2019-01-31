@@ -10,7 +10,7 @@ from builtins import range
 
 
 from pysolve3 import InvalidNameError
-from pysolve3.variable import ModVariab
+from pysolve3.variable import ModVariable
 
 
 class Parameter(Symbol):

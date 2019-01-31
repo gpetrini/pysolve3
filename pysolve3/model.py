@@ -21,7 +21,7 @@ from sympy.utilities import lambdify
 from pysolve3.equation import Equation, EquationError, _rewrite
 from pysolve3.parameter import Parameter, SeriesParameter
 from pysolve3.utils import is_aclose
-from pysolve3.variable import ModVariab
+from pysolve3.variable import ModVariable
 
 
 class DuplicateNameError(ValueError):
