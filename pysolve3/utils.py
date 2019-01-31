@@ -128,17 +128,17 @@ def SolveSFC(model, time=500, iterations=100, threshold=1e-5, table=True):
     else:
         pass
 
-def ShockModel(base_model, create_function, variable, value, time=500, table=True):
+def ShockModel(base_model, create_function, variable, increase, time=500, table=True):
     """
     Shocks the model.
     base_model: The base scenario model
     create_function: the function used to create the model class
     variable: the variable to shock.
-    value: the value to be reassigned to the variable
+    increase: the value to be increassed to the variable
     time: the time to simulate using SolveSFC().
     """
     variable = str(variable)
-    value = float(value)
+    increase = float(increase)
     model = create_function
     
     lagged = [key for key in base_model.solutions[-1].keys()]
@@ -149,7 +149,8 @@ def ShockModel(base_model, create_function, variable, value, time=500, table=Tru
     model.set_values(base_model.solutions[-1])
     
     SolveSFC(model, time=50, table=False)
-    model.set_values({variable:value})
+
+    model.parameters[variable].value += increase
     
     df = SolveSFC(model, time=time, table=table)
     return df
