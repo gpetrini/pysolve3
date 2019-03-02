@@ -143,12 +143,9 @@ def ShockModel(base_model, create_function, variable, increase, time=500, table=
     
     lagged = [key for key in base_model.solutions[-1].keys()]
     lagged = [i for i in lagged if "__1" in i]
-#    lagge2 = [i for i in lagged if "__2" in i]
     for i in lagged:
         del base_model.solutions[-1][i]
-#    for i in lagged2:
-#        del base_model.solutions[-1][i]    
-
+    
     model.set_values(base_model.solutions[-1])
     
     SolveSFC(model, time=50, table=False)
@@ -156,9 +153,6 @@ def ShockModel(base_model, create_function, variable, increase, time=500, table=
     model.parameters[variable].value += increase
     
     df = SolveSFC(model, time=time, table=table)
-    
-#    if AddGrowth == True:
-#	AddGrowth(df, [i for i in df.columns])
     return df
     
     
