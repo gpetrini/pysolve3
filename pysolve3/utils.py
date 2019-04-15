@@ -94,21 +94,6 @@ def SFCTable(model):
     df = pd.DataFrame(data_dict).transpose()
     return df
 
-def AddGrowth(df, variables):
-    """
-    Add Growth rate in the table
-    df: A dataframe generated using SFCTable
-    variables: a list of variables to calculate growth rate
-    """
-    import pandas as pd
-    import numpy as np
-    time = df.shape[0]
-    
-    for variable in variables:
-        variable = str(variable)
-        gvariable = 'g' + variable
-        df[gvariable] = [np.nan, np.nan] + [(df[variable][i] - df[variable][i-1])/df[variable][i-1] for i in range(2,time)]
-
 def SolveSFC(model, time=500, iterations=100, threshold=1e-5, table=True):
     """
     Solves the model
@@ -128,7 +113,7 @@ def SolveSFC(model, time=500, iterations=100, threshold=1e-5, table=True):
     else:
         pass
 
-def ShockModel(base_model, create_function, variable, increase, time=500, table=True):
+def ShockModel(base_model, create_function, variable, increase, time=500, initial_time = 50, table=True):
     """
     Shocks the model.
     base_model: The base scenario model
@@ -142,24 +127,36 @@ def ShockModel(base_model, create_function, variable, increase, time=500, table=
     model = create_function
     
     lagged = [key for key in base_model.solutions[-1].keys()]
-    lagged = [i for i in lagged if "__1" in i]
-#    lagge2 = [i for i in lagged if "__2" in i]
+    lagged = [i for i in lagged if "__" in i]
     for i in lagged:
         del base_model.solutions[-1][i]
-#    for i in lagged2:
-#        del base_model.solutions[-1][i]    
 
     model.set_values(base_model.solutions[-1])
     
-    SolveSFC(model, time=50, table=False)
+    SolveSFC(model, time=initial_time, table=False)
 
     model.parameters[variable].value += increase
     
     df = SolveSFC(model, time=time, table=table)
     
-#    if AddGrowth == True:
-#	AddGrowth(df, [i for i in df.columns])
     return df
     
     
+def SummaryShock(dfShock, digits = 5, shock_time = 50):
+  """
+  Returns a dataframe which the shock is summarized. Only some periods are returned and a 
+  additional column with the differente of the last and previous period
+  dfShcok: DataFrame created with ShockModel()
+  digits: the digits to be displayed
+  """
+  import pandas as pd
 
+  df = pd.DataFrame({"0":dfShock.iloc[shock_time],
+  "Shock": dfShock.iloc[shock_time+1],
+  "1": dfShock.iloc[shock_time+2],
+  "2": dfShock.iloc[shock_time+3],
+  "3": dfShock.iloc[shock_time+4],
+  "t-1": dfShock.iloc[-2],
+  "t": dfShock.iloc[-1]})
+  df['difference'] = df['t'] - df['t-1']
+  return df.style.format("{:." + str(digits) + "g}")

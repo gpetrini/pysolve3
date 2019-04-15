@@ -9,9 +9,9 @@ def read(fname):
 
 setup(
     name='pysolve3',
-    version='0.1.3.3',
+    version='0.1.4',
     packages=find_packages(),
-    install_requires=['sympy==1.1', 'numpy', 'pandas'],
+    install_requires=['sympy>=1.4', 'numpy', 'pandas'],
     license='MIT',
     author='Gabriel Petrini da Silveira',
     author_email='gpetrinidasilveira@gmail.com',
