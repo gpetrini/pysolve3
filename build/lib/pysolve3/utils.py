@@ -142,7 +142,7 @@ def ShockModel(base_model, create_function, variable, increase, time=500, initia
     return df
     
     
-def SummaryShock(dfShock, digits = 5, shock_time = 50):
+def SummaryShock(dfShock, shock_time = 50):
   """
   Returns a dataframe which the shock is summarized. Only some periods are returned and a 
   additional column with the differente of the last and previous period
@@ -159,4 +159,4 @@ def SummaryShock(dfShock, digits = 5, shock_time = 50):
   "t-1": dfShock.iloc[-2],
   "t": dfShock.iloc[-1]})
   df['difference'] = df['t'] - df['t-1']
-  return df.style.format("{:." + str(digits) + "g}")
+  return df

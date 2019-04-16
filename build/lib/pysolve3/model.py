@@ -445,6 +445,9 @@ class Model(object):
 
         self.variables = collections.OrderedDict()
         self.parameters = collections.OrderedDict()
+        self.desc_variables = collections.OrderedDict()
+        self.desc_parameters = collections.OrderedDict()
+        self.no_equations = collections.OrderedDict()
         self.solutions = list()
         self.equations = list()
 
@@ -491,6 +494,7 @@ class Model(object):
             raise DuplicateNameError('Name already in use: ' + name)
         var = ModVariable(name, desc=desc, default=default)
         self.variables[name] = var
+        self.desc_variables[name] = desc, default
         var.model = self
 
         _add_var_to_context(self._local_context, var)
@@ -535,6 +539,7 @@ class Model(object):
         param = Parameter(name, desc=desc, default=default)
         param.model = self
         self.parameters[name] = param
+        self.desc_parameters[name] = desc, default
         _add_param_to_context(self._local_context, param)
         self._need_function_update = True
         return param
@@ -550,7 +555,7 @@ class Model(object):
                 raise ValueError(
                     "{0} is not a parameter/variable".format(name))
 
-    def add(self, equation, desc=None):
+    def add(self, equation, desc=None, no = None):
         """ Adds an equation to the model.
 
             Arguments:
@@ -560,10 +565,12 @@ class Model(object):
                     parameter, variable, or a sympy built-in
                     variable (like pi or E).
                 desc: A description of the equation
+		no: Number of equation
 
             Returns: an Equation
         """
-        eqn = Equation(self, equation, desc=desc)
+        eqn = Equation(self, equation, no)
+        self.no_equations[equation] = no
         eqn.parse(self._local_context)
         self._need_function_update = True
 
