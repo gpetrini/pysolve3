@@ -24,15 +24,16 @@ models based on Stock Flow Consistent (SFC) models.
 Installation
 --------------
 ::
-	pip install pysolve
+	pip3 install pysolve
 
 
 Usage
 -------------
 
 .. code::
-	from pysolve.model import Model
-	from pysolve.utils import round_solution,is_close
+	
+	from pysolve3.model import Model
+	from pysolve3.utils import round_solution,is_close
 
 	model = Model()
 
@@ -90,45 +91,3 @@ Tutorial
 A short tutorial with more explanation is available at
 	http://nbviewer.ipython.org/github/kennt/monetary-economics/blob/master/extra/pysolve%20tutorial.ipynb
 
-TODO list
----------
-- Sparse matrix support (memory improvements for large systems)
-- Documentation
-
-
-Changelog
----------
-
-0.2.0 (in progress)
--------------------
-- Tutorial
-- Improved documentation
-
-0.1.7
------
-- Tutorial
-
-0.1.6
------
-- Added support for solving with Broyden's method
-- Optimized the code for Broyden and Newton-Raphson, should be much faster now.
-
-0.1.5
------
-- Added the d() function.  Implements the difference between the current value
-and the value from a previous iteration.  d(x) is equivalent to x - x(-1)
-- Added support for the following sympy functions: abs, Min, Max, sign, sqrt
-- Added some helper functions to aid in debugging larger models
-- Added support for solving via Newton-Raphson
-
-0.1.4
------
-- Improved error reporting when unable to solve an equation (due to variable
-missing a value).
-- Also, evaluate() used to require that all variables have a value, but that
-may not be true on initialization, so this requirement has been removed.
-
-0.1.3 (and before)
-------------------
-- Added support for the exp() and log() functions.
-- Fixed a bug where the usage of '>=' within an if_true() would cause an error.
