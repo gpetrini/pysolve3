@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: pysolve3
-Version: 0.1.4.1
+Version: 0.1.5
 Summary: A simple interface for solving systems of linear equations
 Home-page: https://github.com/gpetrini/pysolve3
 Author: Gabriel Petrini da Silveira

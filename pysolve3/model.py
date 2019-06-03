@@ -10,13 +10,15 @@ import collections
 import numpy
 from builtins import range
 
-
-from sympy import sympify # Before: sympify
+import sympy as sp
+from sympy import sympify 
 from sympy import Symbol, Function
 from sympy.core.cache import clear_cache
 from sympy.parsing.sympy_parser import parse_expr
 from sympy.parsing.sympy_parser import factorial_notation, auto_number
 from sympy.utilities import lambdify
+from sympy.utilities.lambdify import implemented_function
+from sympy.stats import sample
 
 from pysolve3.equation import Equation, EquationError, _rewrite
 from pysolve3.parameter import Parameter, SeriesParameter
@@ -160,13 +162,18 @@ class _IfTrueNoEvalFunction(Function):
 # Functions defined and used at parse time
 _PARSE_FUNCS = [('_series_acc', _SeriesAccessor),
                 ('d', _deltaFunction),
-                ('if_true', _IfTrueNoEvalFunction)]
+                ('if_true', _IfTrueNoEvalFunction),
+		('normal', numpy.random.normal),
+		('randint', numpy.random.randint),
+		('Normal', sp.stats.Normal),
+		('sample', sp.stats.sample),]
 
 # Functions used at runtime
 _RT_FUNCS = [('if_true', _IfTrueFunction, _IfTrueNoEvalFunction), ]
 
 # Built-in funcs, supported by sympy
-from sympy import exp, log, Abs, Min, Max, sign, sqrt
+from sympy import exp, log, Abs, Min, Max, sign, sqrt, sin, cos
+from sympy.stats import Normal, Poisson, Exponential, Pareto, density, sample, StudentT
 _BUILTIN_FUNCS = [('exp', exp),
                   ('log', log),
                   ('abs', Abs),
@@ -174,8 +181,9 @@ _BUILTIN_FUNCS = [('exp', exp),
                   ('Min', Min),
                   ('sign', sign),
                   ('sqrt', sqrt),
+                  ('sin', sin),
+                  ('cos', cos),
                   ]
-
 
 def _add_functions(context):
     """ Adds our builtin functions.
@@ -631,7 +639,7 @@ class Model(object):
             self._private_funcs = {x[2].__name__: x[1] for x in _RT_FUNCS}
             for func in _BUILTIN_FUNCS:
                 self._private_funcs[func[0]] = func[1]
-
+	   
     def _lambdify(self, expr):
         """ Creates a lambdified expression with the appropriate args """
         return lambdify(self._arg_list, expr, self._private_funcs)
