@@ -56,11 +56,11 @@ model.var('YD', desc='Disposable income of households')
 # This is a shorter way to declare multiple variables
 # model.vars('Y', 'YD', 'Ts', 'Td', 'Hs', 'Hh', 'Gs', 'Cs',
 #            'Cd', 'Ns', 'Nd')
-model.param('Gd', desc='Government goods, demand', initial=20)
-model.param('W', desc='Wage rate', initial=1)
-model.param('alpha1', desc='Propensity to consume out of income', initial=0.6)
-model.param('alpha2', desc='Propensity to consume out of wealth', initial=0.4)
-model.param('theta', desc='Tax rate', initial=0.2)
+model.param('Gd', desc='Government goods, demand', default=20)
+model.param('W', desc='Wage rate', default=1)
+model.param('alpha1', desc='Propensity to consume out of income', default=0.6)
+model.param('alpha2', desc='Propensity to consume out of wealth', default=0.4)
+model.param('theta', desc='Tax rate', default=0.2)
 
 model.add('Cs = Cd')
 model.add('Gs = Gd')
